@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Kvothe Kelsier (generated)" id="1559409852335-1">
+        <createSequence sequenceName="company_seq_generator"/>
+    </changeSet>
+    <changeSet author="Kvothe Kelsier (generated)" id="1559409852335-2">
+        <createTable tableName="company_details">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="company_details_pkey"/>
+            </column>
+            <column name="company_address" type="VARCHAR(255)"/>
+            <column name="company_code" type="VARCHAR(255)"/>
+            <column name="company_id" type="VARCHAR(255)"/>
+            <column name="company_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Kvothe Kelsier (generated)" id="1559409852335-3">
+        <createTable tableName="employee_details">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="employee_details_pkey"/>
+            </column>
+            <column name="designation" type="INTEGER"/>
+            <column name="employee_id" type="VARCHAR(255)"/>
+            <column name="employee_name" type="VARCHAR(255)"/>
+            <column name="salary" type="INTEGER"/>
+            <column name="company_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Kvothe Kelsier (generated)" id="1559409852335-4">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="employee_details" constraintName="fkraoyxt28g894hdxibko3mi3i4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company_details" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
