@@ -48,7 +48,7 @@ public class CreateDataEndPoints {
         return new ResponseEntity<CompanyResponse>(companyResponse,HttpStatus.OK);
     }
 
-    @PostMapping(path = "company/employee", produces = "application/json")
+    @PostMapping(path = "create/employee", produces = "application/json")
     public ResponseEntity<EmployeeResposne> createEmployee(@RequestBody EmployeeData employeeData){
         logger.info("Entered create employee");
         Employee employee = dataTransformer.transformEmployeeNodelToEntity(employeeData);
