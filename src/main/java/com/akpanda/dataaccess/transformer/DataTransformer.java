@@ -6,6 +6,9 @@ import com.akpanda.dataaccess.model.CompanyData;
 import com.akpanda.dataaccess.model.EmployeeData;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class DataTransformer {
     public Company transformCompanyModelToEntity(CompanyData companyData){
@@ -45,5 +48,28 @@ public class DataTransformer {
         companyData.setCompanyName(company.getCompanyName());
         companyData.setCompanyId(company.getCompanyId());
         return companyData;
+    }
+
+    public CompanyData transformCompanyEntitytoModelIncldungEmployees(Company company){
+        CompanyData companyData = new CompanyData();
+        companyData.setCompanyCity(company.getCompanyCity());
+        companyData.setCompanyCode(company.getCompanyCode());
+        companyData.setCompanyName(company.getCompanyName());
+        companyData.setCompanyId(company.getCompanyId());
+        List<EmployeeData> employeeData = new ArrayList<>();
+        for(Employee employee : company.getEmployees()){
+            employeeData.add(this.tarnsformEmployeeEntityToResponse(employee));
+        }
+        companyData.getEmployeeList().addAll(employeeData);
+        return companyData;
+    }
+
+    private EmployeeData tarnsformEmployeeEntityToResponse(Employee employee){
+        EmployeeData employeeData = new EmployeeData();
+        employeeData.setEmployeeName(employee.getEmployeeName());
+        employeeData.setEmployeeId(employee.getEmployeeId());
+        employeeData.setDesignation(employee.getDesignation());
+        employeeData.setSalary(employee.getSalary());
+        return employeeData;
     }
 }

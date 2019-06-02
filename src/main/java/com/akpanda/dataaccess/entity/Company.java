@@ -25,6 +25,9 @@ public class Company {
     @Column(name="company_code")
     private String companyCode;
 
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "company")
+    private List<Employee> employees;
+
     public Long getId() {
         return id;
     }
@@ -65,4 +68,11 @@ public class Company {
         this.companyCode = companyCode;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 }
