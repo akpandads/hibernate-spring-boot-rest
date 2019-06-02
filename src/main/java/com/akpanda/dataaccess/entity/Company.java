@@ -1,6 +1,7 @@
 package com.akpanda.dataaccess.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="COMPANY_DETAILS")
@@ -63,4 +64,5 @@ public class Company {
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
     }
+
 }

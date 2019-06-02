@@ -14,8 +14,8 @@ public class EmployeeDaoImpl {
     @Autowired
     private EmployeeDaoRepository employeeDaoRepository;
 
-    public Employee findByCompanyId(String companyId){
-        Optional<Employee> employee = employeeDaoRepository.findByEmployeeId(companyId);
+    public Employee findByEmployeeId(String employeeId){
+        Optional<Employee> employee = employeeDaoRepository.findByEmployeeId(employeeId);
         if(employee.isPresent())
             return employee.get();
         return null;
@@ -24,4 +24,5 @@ public class EmployeeDaoImpl {
     public void saveEmployee(Employee employee){
         employeeDaoRepository.save(employee);
     }
+
 }

@@ -51,7 +51,8 @@ public class CreateDataEndPoints {
     @PostMapping(path = "create/employee", produces = "application/json")
     public ResponseEntity<EmployeeResposne> createEmployee(@RequestBody EmployeeData employeeData){
         logger.info("Entered create employee");
-        Employee employee = dataTransformer.transformEmployeeNodelToEntity(employeeData);
+        Company company = companyDao.findByCompanyId(employeeData.getCompanyId());
+        Employee employee = dataTransformer.transformEmployeeNodelToEntity(employeeData,company);
         EmployeeResposne employeeResposne = new EmployeeResposne();
         try{
             employeeDao.saveEmployee(employee);

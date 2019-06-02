@@ -2,6 +2,8 @@ package com.akpanda.dataaccess.model;
 
 import com.akpanda.dataaccess.entity.Company;
 import com.akpanda.dataaccess.entity.enums.DesignationEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class EmployeeData {
 
@@ -10,7 +12,25 @@ public class EmployeeData {
     private String employeeName;
     private Integer salary;
     private DesignationEnum designation;
-    private Company company;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String companyId;
+    private CompanyData companyData;
+
+    public CompanyData getCompanyData() {
+        return companyData;
+    }
+
+    public void setCompanyData(CompanyData companyData) {
+        this.companyData = companyData;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
 
     public String getEmployeeName() {
         return employeeName;
@@ -34,14 +54,6 @@ public class EmployeeData {
 
     public void setDesignation(DesignationEnum designation) {
         this.designation = designation;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public String getEmployeeId() {

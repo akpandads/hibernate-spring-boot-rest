@@ -1,8 +1,10 @@
 package com.akpanda.dataaccess.entity;
 
 import com.akpanda.dataaccess.entity.enums.DesignationEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employee_details")
@@ -24,8 +26,9 @@ public class Employee {
     @Column(name = "designation")
     private DesignationEnum designation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id")
+    @NotNull
     private Company company;
 
     public Long getId() {

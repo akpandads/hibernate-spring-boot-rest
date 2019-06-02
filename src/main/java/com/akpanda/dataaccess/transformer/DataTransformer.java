@@ -17,13 +17,33 @@ public class DataTransformer {
         return company;
     }
 
-    public Employee transformEmployeeNodelToEntity(EmployeeData employeeData){
+    public Employee transformEmployeeNodelToEntity(EmployeeData employeeData,Company company){
         Employee employee = new Employee();
-        employee.setCompany(employeeData.getCompany());
+        employee.setCompany(company);
         employee.setDesignation(employeeData.getDesignation());
         employee.setEmployeeName(employeeData.getEmployeeName());
         employee.setSalary(employeeData.getSalary());
         employee.setEmployeeId(employeeData.getEmployeeId());
         return employee;
+    }
+
+    public EmployeeData transformEmployeeEntityToModel(Employee employee){
+        EmployeeData employeeData = new EmployeeData();
+        employeeData.setEmployeeName(employee.getEmployeeName());
+        employeeData.setEmployeeId(employee.getEmployeeId());
+        employeeData.setDesignation(employee.getDesignation());
+        employeeData.setSalary(employee.getSalary());
+        CompanyData companyData = this.transformCompanyEntityToModel(employee.getCompany());
+        employeeData.setCompanyData(companyData);
+        return employeeData;
+    }
+
+    private CompanyData transformCompanyEntityToModel(Company company){
+        CompanyData companyData = new CompanyData();
+        companyData.setCompanyCity(company.getCompanyCity());
+        companyData.setCompanyCode(company.getCompanyCode());
+        companyData.setCompanyName(company.getCompanyName());
+        companyData.setCompanyId(company.getCompanyId());
+        return companyData;
     }
 }
